@@ -11,12 +11,12 @@ import {Item} from '../models';
         <section>
             <h1>Sanderson Sister List</h1>
             <div class="items-wrapper">
-                <hocus-list-item *ngFor="let item of items" [item]="item" (click)="toggle(item)"/>
+                <hocus-list-item *ngFor="let item of items" [item]="item" (click)="toggleItemComplete(item)"/>
             </div>
         </section>
         <section class="bottom">
-            <label for="chkDawn">Dawn is here!</label>
-            <input id="chkDawn" type="checkbox">
+            <label for="chkDawn" >Dawn is here!</label>
+            <input id="chkDawn" type="checkbox" [value]="isDawn" (click)="toggleDawnFlag()">
         </section>
     `,
     styles: [
@@ -71,7 +71,11 @@ export class ListComponent {
         {text: 'Suck the lives out of the children of Salem before sunrise', complete: false},
     ]
 
-    toggle(item: Item) {
+    isDawn = false;
+
+    toggleDawnFlag = () => this.isDawn = !this.isDawn;
+
+    toggleItemComplete(item: Item) {
         item.complete = !item.complete;
     }
 }
