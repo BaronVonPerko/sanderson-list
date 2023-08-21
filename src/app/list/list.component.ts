@@ -1,11 +1,11 @@
 import {Component, computed, effect, signal} from '@angular/core';
-import {NgForOf} from '@angular/common';
+import {NgForOf, NgIf} from '@angular/common';
 import {Item} from '../models';
 
 @Component({
     selector: 'hocus-list',
     standalone: true,
-    imports: [NgForOf],
+    imports: [NgForOf, NgIf],
     template: `
         <section>
             <h1>Sanderson Sister List</h1>
