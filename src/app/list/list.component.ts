@@ -1,21 +1,25 @@
 import {Component, computed, effect, signal} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {NgForOf} from '@angular/common';
 import {Item} from '../models';
 
 @Component({
     selector: 'hocus-list',
     standalone: true,
-    imports: [CommonModule],
+    imports: [NgForOf],
     template: `
         <section>
             <h1>Sanderson Sister List</h1>
             <div class="items-wrapper">
-                <p *ngFor="let item of items" [class.strike]="item.complete" (click)="toggleItemComplete(item)">{{item.text}}</p>
+                <p *ngFor="let item of items; let i = index;" 
+                   [class.strike]="item.complete" 
+                   (click)="toggleItemComplete(i)">
+                    {{item.text}}
+                </p>
             </div>
         </section>
         <section class="bottom">
             <label for="chkDawn">Dawn is here!</label>
-            <input id="chkDawn" type="checkbox" [value]="isDawn" (click)="toggleDawnFlag()">
+            <input id="chkDawn" type="checkbox" [checked]="isDawn" (click)="toggleDawnFlag()">
         </section>
     `,
     styles: [
@@ -94,7 +98,7 @@ export class ListComponent {
 
     toggleDawnFlag = () => this.isDawn = !this.isDawn;
 
-    toggleItemComplete(item: Item) {
-        item.complete = !item.complete;
+    toggleItemComplete(i: number) {
+        this.items[i].complete = !this.items[i].complete;
     }
 }
