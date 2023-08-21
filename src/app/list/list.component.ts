@@ -96,7 +96,9 @@ export class ListComponent {
     constructor() {
     }
 
-    toggleDawnFlag = () => this.isDawn = !this.isDawn;
+    toggleDawnFlag() {
+        this.isDawn = !this.isDawn;
+    }
 
     toggleItemComplete(i: number) {
         this.items[i].complete = !this.items[i].complete;
